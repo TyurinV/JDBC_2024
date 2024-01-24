@@ -18,7 +18,7 @@ public class Util {
 
     public Util() {
         try {
-            fis = new FileInputStream("src/main/resources/config.properties3");
+            fis = new FileInputStream("src/main/resources/config.properties");
             properties.load(fis);
 
             URL = properties.getProperty("db.host");
