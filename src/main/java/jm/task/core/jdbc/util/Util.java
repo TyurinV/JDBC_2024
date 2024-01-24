@@ -1,7 +1,6 @@
 package jm.task.core.jdbc.util;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
@@ -19,23 +18,16 @@ public class Util {
 
     public Util() {
         try {
-            fis = new FileInputStream("src/main/resources/config.properties");
+            fis = new FileInputStream("src/main/resources/config.properties3");
             properties.load(fis);
 
             URL = properties.getProperty("db.host");
             USERNAME = properties.getProperty("db.user");
             PASSWORD = properties.getProperty("db.pass");
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
             connection = DriverManager
                     .getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
