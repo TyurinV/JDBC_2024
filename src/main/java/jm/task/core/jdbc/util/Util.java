@@ -9,9 +9,9 @@ public class Util {
 
     private Connection connection;
 
-    private final String URL;
-    private final String USERNAME;
-    private final String PASSWORD;
+    private String url;
+    private String username;
+    private String password;
 
     FileInputStream fis;
     Properties properties = new Properties();
@@ -21,14 +21,14 @@ public class Util {
             fis = new FileInputStream("src/main/resources/config.properties");
             properties.load(fis);
 
-            URL = properties.getProperty("db.host");
-            USERNAME = properties.getProperty("db.user");
-            PASSWORD = properties.getProperty("db.pass");
+            url = properties.getProperty("db.host");
+            username = properties.getProperty("db.user");
+            password = properties.getProperty("db.pass");
 
             connection = DriverManager
-                    .getConnection(URL, USERNAME, PASSWORD);
+                    .getConnection(url, username, password);
         } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
